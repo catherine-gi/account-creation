@@ -35,13 +35,11 @@ public class KafkaConsumerService {
         logger.info("Message content: {}", message);
 
         try {
-            // Convert Map to JSON string, then to AccountEvent
             String json = objectMapper.writeValueAsString(message);
             AccountEvent accountEvent = objectMapper.readValue(json, AccountEvent.class);
 
             logger.info("Parsed AccountEvent: {}", accountEvent);
 
-            // Process the event based on event type
             processAccountEvent(accountEvent);
 
         } catch (Exception e) {
@@ -69,14 +67,16 @@ public class KafkaConsumerService {
         logger.info("Handling ACCOUNT_CREATED event for user: {}", event.getUsername());
 
         try {
-            logger.info("New account created - ID: {}, Username: {}, Email: {}, Full Name: {}, Timestamp: {}",
+            logger.info("New account created - ID: {}, Username: {}, Email: {}, Full Name: {}, Timestamp: {}, VerificationToken: {}",
                     event.getAccountId(), event.getUsername(), event.getEmail(),
-                    event.getFullName(), event.getTimestamp());
+                    event.getFullName(), event.getTimestamp(), event.getVerificationToken());
 
+            // Pass verificationToken to the notification service
             notificationService.sendWelcomeMessage(
                     event.getUsername(),
                     event.getEmail(),
-                    event.getFullName()
+                    event.getFullName(),
+                    event.getVerificationToken()
             );
 
             logger.info("Account creation processing completed for user: {}", event.getUsername());
@@ -95,11 +95,11 @@ public class KafkaConsumerService {
                     event.getAccountId(), event.getUsername(), event.getEmail(),
                     event.getFullName(), event.getTimestamp());
 
-            notificationService.sendAccountDeletionNotification(
-                    event.getUsername(),
-                    event.getEmail(),
-                    event.getFullName()
-            );
+//            notificationService.sendAccountDeletionNotification(
+//                    event.getUsername(),
+//                    event.getEmail(),
+//                    event.getFullName()
+//            );
 
             logger.info("Account deletion processing completed for user: {}", event.getUsername());
 
