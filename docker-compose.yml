@@ -17,7 +17,7 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   mongodb:
@@ -49,6 +49,7 @@ services:
       - kafka
     environment:
       SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_MAIL_USERNAME: ${GMAIL_APP_USERNAME}
       SPRING_MAIL_PASSWORD: ${GMAIL_APP_PASSWORD}
 
 volumes:
