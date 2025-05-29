@@ -18,6 +18,26 @@ public class Account {
     @Email(message = "Email should be valid")
     private String email;
 
+    public boolean isEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    private boolean emailVerified = false;
+
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
+    }
+
+    private String verificationToken;
+
     @NotBlank(message = "Full name is required")
     private String fullName;
 

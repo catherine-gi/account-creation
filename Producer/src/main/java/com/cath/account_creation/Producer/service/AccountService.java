@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AccountService {
@@ -34,6 +35,10 @@ public class AccountService {
         if (accountRepository.existsByEmail(account.getEmail())) {
             throw new RuntimeException("Email already exists: " + account.getEmail());
         }
+        // Generate verification token
+        String token = UUID.randomUUID().toString();
+        account.setVerificationToken(token);
+        account.setEmailVerified(false);
 
         // Save account to MongoDB
         Account savedAccount = accountRepository.save(account);

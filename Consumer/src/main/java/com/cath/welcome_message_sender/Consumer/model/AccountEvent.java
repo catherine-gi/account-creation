@@ -10,6 +10,7 @@ public class AccountEvent {
     private String username;
     private String email;
     private String fullName;
+    private String verificationToken; // <-- Add this field
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime timestamp;
@@ -18,61 +19,29 @@ public class AccountEvent {
     }
 
     // Getters and Setters
-    public String getEventId() {
-        return eventId;
-    }
+    public String getEventId() { return eventId; }
+    public void setEventId(String eventId) { this.eventId = eventId; }
 
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
-    }
+    public String getEventType() { return eventType; }
+    public void setEventType(String eventType) { this.eventType = eventType; }
 
-    public String getEventType() {
-        return eventType;
-    }
+    public String getAccountId() { return accountId; }
+    public void setAccountId(String accountId) { this.accountId = accountId; }
 
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
-    public String getAccountId() {
-        return accountId;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
-    }
+    public String getFullName() { return fullName; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
 
-    public String getUsername() {
-        return username;
-    }
+    public String getVerificationToken() { return verificationToken; } // <-- Add getter
+    public void setVerificationToken(String verificationToken) { this.verificationToken = verificationToken; } // <-- Add setter
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
+    public LocalDateTime getTimestamp() { return timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
 
     @Override
     public String toString() {
@@ -83,6 +52,7 @@ public class AccountEvent {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
+                ", verificationToken='" + verificationToken + '\'' + // <-- Add to toString
                 ", timestamp=" + timestamp +
                 '}';
     }

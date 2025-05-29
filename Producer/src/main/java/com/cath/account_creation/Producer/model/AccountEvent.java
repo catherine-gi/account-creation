@@ -9,6 +9,7 @@ public class AccountEvent {
     private String username;
     private String email;
     private String fullName;
+    private String verificationToken; // <-- Add this line
     private LocalDateTime timestamp;
 
     public AccountEvent() {
@@ -22,6 +23,7 @@ public class AccountEvent {
         this.username = account.getUsername();
         this.email = account.getEmail();
         this.fullName = account.getFullName();
+        this.verificationToken = account.getVerificationToken(); // <-- Add this line
         this.eventId = "EVT-" + System.currentTimeMillis();
     }
 
@@ -44,6 +46,9 @@ public class AccountEvent {
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
 
+    public String getVerificationToken() { return verificationToken; } // <-- Add this
+    public void setVerificationToken(String verificationToken) { this.verificationToken = verificationToken; } // <-- Add this
+
     public LocalDateTime getTimestamp() { return timestamp; }
     public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
 
@@ -56,6 +61,7 @@ public class AccountEvent {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
+                ", verificationToken='" + verificationToken + '\'' + // <-- Add this
                 ", timestamp=" + timestamp +
                 '}';
     }
